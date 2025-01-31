@@ -4,7 +4,7 @@ public class Tree {
 
     public Tree() {}
 
-    public void insert(int data) {
+    public Node insert(int data) {
         Node y = null;
         Node x = this.getRoot();
 
@@ -30,6 +30,8 @@ public class Tree {
                 y.setRight(z);
             }
         }
+
+        return z;
     }
 
     public Node min(Node node) {
@@ -44,6 +46,30 @@ public class Tree {
             node = node.getRight();
         }
         return node;
+    }
+
+    public Node predecessor(Node node) {
+        if (node.getLeft() != null) {
+            return max(node.getLeft());
+        }
+        Node y = node.getParent();
+        while (y != null && node == y.getLeft()) {
+            node = y;
+            y = y.getParent();
+        }
+        return y;
+    }
+
+    public Node successor(Node node) {
+        if (node.getRight() != null) {
+            return min(node.getRight());
+        }
+        Node y = node.getParent();
+        while (y != null && node == y.getRight()) {
+            node = y;
+            y = y.getParent();
+        }
+        return y;
     }
 
     public void transplant(Node u, Node v) {
