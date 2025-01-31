@@ -7,6 +7,7 @@ public class Main {
         tree.insert(4);
         tree.insert(9);
         tree.insert(5);
+        tree.insert(6);
         tree.insert(1);
 
         tree.inOrder(tree.getRoot());

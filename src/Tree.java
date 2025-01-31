@@ -32,6 +32,21 @@ public class Tree {
         }
     }
 
+    public void transplant(Node u, Node v) {
+        if (u.getParent() == null) {
+            this.root = v;
+        } else {
+            if (u == u.getParent().getLeft()) {
+                u.getParent().setLeft(v);
+            } else {
+                u.getParent().setRight(v);
+            }
+        }
+        if (v != null) {
+            v.setParent(u.getParent());
+        }
+    }
+
     public void inOrder(Node node) {
         if (node != null) {
             inOrder(node.getLeft());
