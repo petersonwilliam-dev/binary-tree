@@ -32,6 +32,20 @@ public class Tree {
         }
     }
 
+    public Node min(Node node) {
+        while (node.getLeft() != null) {
+            node = node.getLeft();
+        }
+        return node;
+    }
+
+    public Node max(Node node) {
+        while (node.getRight() != null) {
+            node = node.getRight();
+        }
+        return node;
+    }
+
     public void transplant(Node u, Node v) {
         if (u.getParent() == null) {
             this.root = v;
