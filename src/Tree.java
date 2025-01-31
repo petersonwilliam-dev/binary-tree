@@ -34,6 +34,26 @@ public class Tree {
         return z;
     }
 
+    public void remove(Node node) {
+        if (node.getLeft() == null) {
+            transplant(node, node.getRight());
+        } else {
+            if (node.getRight() == null) {
+                transplant(node, node.getLeft());
+            } else {
+                Node y = min(node.getRight());
+                if (y.getParent() != node) {
+                    transplant(y, y.getRight());
+                    y.setRight(node.getRight());
+                    y.getRight().setParent(y);
+                }
+                transplant(node, y);
+                y.setLeft(node.getLeft());
+                y.getLeft().setParent(y);
+            }
+        }
+    }
+
     public Node min(Node node) {
         while (node.getLeft() != null) {
             node = node.getLeft();
@@ -72,6 +92,8 @@ public class Tree {
         return y;
     }
 
+
+
     public void transplant(Node u, Node v) {
         if (u.getParent() == null) {
             this.root = v;
@@ -86,6 +108,7 @@ public class Tree {
             v.setParent(u.getParent());
         }
     }
+
 
     public void inOrder(Node node) {
         if (node != null) {
