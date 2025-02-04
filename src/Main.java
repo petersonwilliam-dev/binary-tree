@@ -1,18 +1,24 @@
+import java.net.HttpRetryException;
+
 public class Main {
     public static void main(String[] args) {
-        Tree tree = new Tree();
+        AVLTree AVLTree = new AVLTree();
 
-        tree.insert(35);
-        tree.insert(24);
-        tree.insert(67);
-        tree.insert(15);
-        tree.insert(45);
-        Node node = tree.insert(90);
-        tree.insert(75);
-        tree.insert(86);
-        tree.insert(79);
-        tree.remove(node);
+        AVLTree.insert(35);
+        AVLTree.insert(24);
+        AVLTree.insert(67);
+        AVLTree.insert(15);
+        AVLTree.insert(45);
+        AVLTree.insert(52);
+        Node node =  AVLTree.insert(90);
+        AVLTree.insert(75);
+        AVLTree.insert(86);
+        AVLTree.insert(79);
+        AVLTree.insert(78);
 
-        tree.inOrder(tree.getRoot());
+        AVLTree.rotateRight(node);
+
+        AVLTree.preOrder(AVLTree.getRoot());
+
     }
 }

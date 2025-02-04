@@ -1,8 +1,8 @@
-public class Tree {
+public class AVLTree {
 
     private Node root;
 
-    public Tree() {}
+    public AVLTree() {}
 
     public Node insert(int data) {
         Node y = null;
@@ -52,6 +52,18 @@ public class Tree {
                 y.getLeft().setParent(y);
             }
         }
+    }
+
+    public Node searchNode(int data) {
+        Node x = this.root;
+        while (x != null && x.getData() != data) {
+            if (data < x.getData()) {
+                x = x.getLeft();
+            } else {
+                x = x.getRight();
+            }
+        }
+        return x;
     }
 
     public Node min(Node node) {
@@ -109,12 +121,92 @@ public class Tree {
         }
     }
 
+    public int getBalanceFactor(Node node) {
+        int balanceLeft = lenghtTree(node.getLeft());
+        int balanceRight = lenghtTree(node.getRight());
+
+        int balanceFactor = balanceLeft - balanceRight ;
+
+        return balanceFactor;
+    }
+
+    public int lenghtTree(Node node) {
+        int lenght = 0;
+
+        if (node != null) {
+            lenght++;
+            if (node.getLeft() != null) {
+                lenght += lenghtTree(node.getLeft());
+            }
+            if (node.getRight() != null) {
+                lenght += lenghtTree(node.getRight());
+            }
+        }
+
+        return  lenght;
+    }
+
+    public void rotateLeft(Node node) {
+        Node changedNode = node.getRight();
+
+        if (changedNode != null) {
+            if (node == this.getRoot()) {
+                this.setRoot(changedNode);
+            }
+            node.setRight(changedNode.getLeft());
+            if (changedNode.getLeft() != null) {
+                changedNode.getLeft().setParent(node);
+            }
+            changedNode.setLeft(node);
+            changedNode.setParent(node.getParent());
+            if (node.getParent() != null) {
+                if (node.getParent().getLeft() == node) {
+                    node.getParent().setLeft(changedNode);
+                } else {
+                    node.getParent().setRight(changedNode);
+                }
+            }
+            node.setParent(changedNode);
+        }
+    }
+
+    public void rotateRight(Node node) {
+        Node changedNode = node.getLeft();
+
+        if (changedNode != null) {
+            if (node == this.getRoot()) {
+                this.setRoot(changedNode);
+            }
+            node.setLeft(changedNode.getRight());
+            if (changedNode.getRight() != null) {
+                changedNode.getRight().setParent(node);
+            }
+            changedNode.setRight(node);
+            changedNode.setParent(node.getParent());
+            if (node.getParent() != null) {
+                if (node.getParent().getLeft() == node) {
+                    node.getParent().setLeft(changedNode);
+                } else {
+                    node.getParent().setRight(changedNode);
+                }
+            }
+            node.setParent(changedNode);
+        }
+    }
 
     public void inOrder(Node node) {
         if (node != null) {
             inOrder(node.getLeft());
             System.out.print(node.getData() + " ");
             inOrder(node.getRight());
+        }
+    }
+
+    public void preOrder(Node node) {
+        if (node != null) {
+            System.out.print(node.getData() + " ");
+            preOrder(node.getLeft());
+            preOrder(node.getRight());
         }
     }
 
