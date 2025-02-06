@@ -10,15 +10,13 @@ public class Main {
         AVLTree.insert(15);
         AVLTree.insert(45);
         AVLTree.insert(52);
-        Node node =  AVLTree.insert(90);
+        AVLTree.insert(90);
         AVLTree.insert(75);
         AVLTree.insert(86);
         AVLTree.insert(79);
         AVLTree.insert(78);
+        AVLTree.insert(77);
 
-        AVLTree.rotateRight(node);
-
-        AVLTree.preOrder(AVLTree.getRoot());
 
     }
 }

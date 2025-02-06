@@ -31,6 +31,7 @@ public class AVLTree {
             }
         }
 
+        balance(z);
         return z;
     }
 
@@ -52,6 +53,7 @@ public class AVLTree {
                 y.getLeft().setParent(y);
             }
         }
+        balance(node.getParent());
     }
 
     public Node searchNode(int data) {
@@ -131,19 +133,43 @@ public class AVLTree {
     }
 
     public int lenghtTree(Node node) {
-        int lenght = 0;
-
-        if (node != null) {
-            lenght++;
-            if (node.getLeft() != null) {
-                lenght += lenghtTree(node.getLeft());
-            }
-            if (node.getRight() != null) {
-                lenght += lenghtTree(node.getRight());
+        if (node == null) {
+            return 0;
+        } else {
+            int leftLenght = lenghtTree(node.getLeft());
+            int righLenght = lenghtTree(node.getRight());
+            if (leftLenght > righLenght) {
+                return leftLenght + 1;
+            } else {
+                return righLenght + 1;
             }
         }
+    }
 
-        return  lenght;
+    public void balance(Node node) {
+        while (node != null) {
+            int balanceFactor = getBalanceFactor(node);
+
+            if (balanceFactor < -1 || balanceFactor > 1) {
+                  if (balanceFactor < -1) {
+                      if (node.getRight().getRight() != null) {
+                            rotateLeft(node);
+                      } else {
+                          rotateRight(node.getRight());
+                          rotateLeft(node);
+                      }
+                  } else {
+                      if (node.getLeft().getLeft() != null) {
+                          rotateRight(node);
+                      } else {
+                          rotateLeft(node.getLeft());
+                          rotateRight(node);
+                      }
+                  }
+            }
+
+            node = node.getParent();
+        }
     }
 
     public void rotateLeft(Node node) {
@@ -207,6 +233,22 @@ public class AVLTree {
             System.out.print(node.getData() + " ");
             preOrder(node.getLeft());
             preOrder(node.getRight());
+        }
+    }
+
+    public void posOrder(Node node) {
+        if (node != null) {
+            posOrder(node.getLeft());
+            posOrder(node.getRight());
+            System.out.print(node.getData() + " ");
+        }
+    }
+
+    public void reverseOrder(Node node) {
+        if (node != null) {
+            reverseOrder(node.getRight());
+            System.out.print(node.getData() + " ");
+            reverseOrder(node.getLeft());
         }
     }
 
