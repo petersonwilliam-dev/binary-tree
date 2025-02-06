@@ -27,7 +27,7 @@ Inserts a new node with the specified value into the tree.
   - The new node is positioned according to binary search tree rules.
   - After insertion, the tree's balance is checked and adjusted if necessary.
 
-## Deletion
+### Deletion
 ```java
 public void remove(Node node)
 ```
@@ -42,7 +42,7 @@ Removes a node from the AVL tree.
   - If the node has two children, its in-order successor is used as a replacement.
   - After removal, the tree is rebalanced.
 
-## Search
+### Search
 ```java
 public Node searchNode(int data)
 ```
@@ -55,7 +55,7 @@ Searches for a node with the specified value in the AVL tree.
 - ### Returns:
   - The corresponding node or null if the value is not found.
 
-## Minimum Value Search
+### Minimum Value Search
 ```java
 public Node min(Node node)
 ```
@@ -68,7 +68,7 @@ Finds the node with the smallest value in the given subtree.
 - ### Returns:
   - The node with the smallest value in the subtree.
 
-## Maximum Value Search
+### Maximum Value Search
 ```java
 public Node max(Node node)
 ```
@@ -80,7 +80,7 @@ Finds the node with the largest value in the given subtree.
 - ### Returns:
   - The node with the largest value in the subtree.
 
-## Predecessor and Successor
+### Predecessor and Successor
 ```java
 public Node predecessor(Node node)
 public Node successor(Node node)
@@ -93,7 +93,7 @@ Returns the in-order predecessor or successor of a node.
 - ### eturns:
   - The predecessor (largest node smaller than the current one) or successor (smallest node larger than the current one), respectively.
 
-## Balancing
+### Balancing
 ```java
 public void balance(Node node)
 ```
@@ -105,7 +105,7 @@ Ensures that the tree remains balanced after insertions or deletions.
 - ### Behavior:
   -If a node is unbalanced, single or double rotations are applied as needed.
 
-## Rotations
+### Rotations
 ```java
 public void rotateLeft(Node node)
 public void rotateRight(Node node)
@@ -118,7 +118,7 @@ Performs left or right rotation on an unbalanced node.
 - ### Behavior:
   - Rotations help maintain the balance of the AVL tree.
 
-## Balance Factor
+### Balance Factor
 ```java
 public int getBalanceFactor(Node node)
 ```
@@ -130,7 +130,7 @@ Calculates the balance factor of a node.
 - ### Returns:
   - The balance factor of the node.
 
-## Tree Height
+### Tree Height
 ```java
 public int lenghtTree(Node node)
 ```
@@ -142,7 +142,7 @@ Computes the height of the subtree from a given node.
 - ### Returns:
   - The height of the subtree.
 
-## Tree Traversals
+### Tree Traversals
 ```java
 public void inOrder(Node node)
 public void preOrder(Node node)
@@ -164,7 +164,7 @@ Traverse the AVL tree in different orders.
   
   - reverseOrder(Node node): Prints values in descending order.
 
-## Getters and Setters
+### Getters and Setters
 ```java
 public Node getRoot()
 public void setRoot(Node root)
